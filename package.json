@@ -1,0 +1,16 @@
+{
+  "name": "oura-mcp-server",
+  "version": "1.0.0",
+  "description": "Personal MCP server exposing your own Oura Ring v2 API data (sleep, readiness, activity, heart rate, workouts) as tools for Claude.",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "authorize": "node src/authorize.js",
+    "start": "node src/server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  }
+}
