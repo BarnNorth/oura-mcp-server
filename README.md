@@ -18,6 +18,32 @@ just your own data.
 
 ---
 
+## Using this if you didn't write it
+
+This repo is a template, not a shared service — there's no account or data
+tied to it. If you're setting this up for yourself:
+
+- **Register your own OAuth application** in step 1 below. Don't reuse
+  someone else's Client ID/Secret — each person needs their own app
+  registration, since Oura ties API access to the app that requests it.
+- **Everything stays local to your machine.** Your `.env` (Client
+  ID/Secret) and `~/.oura-mcp/tokens.json` (access/refresh tokens) are
+  created fresh when you run through the setup steps, are gitignored, and
+  are never read from or written to this repo. Cloning this code gives you
+  the *program*, not anyone's credentials or health data.
+- **You authorize your own Oura account** in step 3 — the OAuth login
+  screen is Oura's, not this project's, so you're logging into (and
+  granting access to) your own account only.
+- Per [Oura's API agreement](https://cloud.ouraring.com/legal/api-agreement),
+  personal use to access your own data is fine, but the data can't be
+  cached/stored beyond what's needed to serve a request, shared with third
+  parties, or used to train/fine-tune an AI model. This server already
+  follows that: it fetches data live on each tool call and never writes API
+  responses to disk (only OAuth tokens are persisted, which is required for
+  auth).
+
+---
+
 ## What this gives you
 
 10 MCP tools:
@@ -62,6 +88,7 @@ until you manually revoke access on Oura's side.
 ## 2. Install and configure
 
 ```bash
+git clone https://github.com/BarnNorth/oura-mcp-server.git
 cd oura-mcp-server
 npm install
 cp .env.example .env
