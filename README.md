@@ -105,15 +105,20 @@ replace the whole file if you have other servers configured):
   "mcpServers": {
     "oura": {
       "command": "node",
-      "args": ["/absolute/path/to/oura-mcp-server/src/server.js"]
+      "args": [
+        "--env-file=/absolute/path/to/oura-mcp-server/.env",
+        "/absolute/path/to/oura-mcp-server/src/server.js"
+      ]
     }
   }
 }
 ```
 
-Use the **absolute path** to `src/server.js` on your machine — relative
-paths won't resolve correctly since Claude Desktop launches it as a
-subprocess from its own working directory.
+Use **absolute paths** on your machine — relative paths won't resolve
+correctly since Claude Desktop launches it as a subprocess from its own
+working directory. The `--env-file` flag is required here: unlike `npm run
+start`, Claude Desktop invokes `node` directly, so nothing else loads `.env`
+into the process.
 
 Fully quit and reopen Claude Desktop (not just close the window — Cmd+Q on
 macOS, or quit from the system tray on Windows). Start a new conversation;
@@ -128,7 +133,10 @@ For **Claude Code**, the equivalent is a project-level `.mcp.json`:
     "oura": {
       "type": "stdio",
       "command": "node",
-      "args": ["/absolute/path/to/oura-mcp-server/src/server.js"]
+      "args": [
+        "--env-file=/absolute/path/to/oura-mcp-server/.env",
+        "/absolute/path/to/oura-mcp-server/src/server.js"
+      ]
     }
   }
 }

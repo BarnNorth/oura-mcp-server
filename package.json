@@ -5,8 +5,8 @@
   "type": "module",
   "main": "src/server.js",
   "scripts": {
-    "authorize": "node src/authorize.js",
-    "start": "node src/server.js"
+    "authorize": "node --env-file=.env src/authorize.js",
+    "start": "node --env-file=.env src/server.js"
   },
   "license": "MIT",
   "dependencies": {
